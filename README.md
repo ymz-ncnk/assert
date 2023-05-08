@@ -9,10 +9,10 @@ import "github.com/ymz-ncnk/assert"
 
 // First of all you should turn on assertions.
 func init() {
-	assert.On = true
+  assert.On = true
 }
 
 func main(){
-	assert.Equal(1,1)
+  assert.Equal(1,1)
 }
 ```
