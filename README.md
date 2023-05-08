@@ -1,4 +1,4 @@
-# Assert
+# assert
 Checks the correctness of invariants in the code.
 
 # How to use
