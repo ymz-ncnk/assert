@@ -41,7 +41,7 @@ func EqualError(a, b error) {
 	EqualErrorFn(func() error { return a }, b)
 }
 
-// EqualFn invariant will panic if fn result error is not equal to r.
+// EqualErrorFn invariant will panic if fn result error is not equal to r.
 func EqualErrorFn(fn func() error, r error) {
 	if !On {
 		return
@@ -63,7 +63,7 @@ func Bigger[T constraints.Ordered](a, b T) {
 	BiggerFn(func() T { return a }, b)
 }
 
-// EqualFn invariant will panic if fn result is lesser than r.
+// BiggerFn invariant will panic if fn result is lesser than r.
 func BiggerFn[T constraints.Ordered](fn func() T, r T) {
 	a := fn()
 	if On && a < r {
@@ -76,7 +76,7 @@ func Lesser[T constraints.Ordered](a, b T) {
 	LesserFn(func() T { return a }, b)
 }
 
-// EqualFn invariant will panic if fn result is bigger than r.
+// LesserFn invariant will panic if fn result is bigger than r.
 func LesserFn[T constraints.Ordered](fn func() T, r T) {
 	a := fn()
 	if On && a > r {
