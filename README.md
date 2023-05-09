@@ -1,5 +1,5 @@
 # assert
-Checks the correctness of invariants in the code.
+Provides invariant checking in Golang code.
 
 # How to use
 ```go
