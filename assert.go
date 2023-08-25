@@ -1,6 +1,7 @@
 package assert
 
 import (
+	"bytes"
 	"fmt"
 	"reflect"
 
@@ -32,6 +33,19 @@ func EqualDeep(a, b interface{}) {
 func EqualDeepFn(fn func() interface{}, r interface{}) {
 	a := fn()
 	if On && !reflect.DeepEqual(a, r) {
+		panic(fmt.Sprintf("%v != %v", a, r))
+	}
+}
+
+// EqualBytes invariant will panic if two byte slices are not equal.
+func EqualBytes(a, b []byte) {
+	EqualBytesFn(func() []byte { return a }, b)
+}
+
+// EqualBytesFn invariant will panic if fn result is not equal to r.
+func EqualBytesFn(fn func() []byte, r []byte) {
+	a := fn()
+	if On && !bytes.Equal(a, r) {
 		panic(fmt.Sprintf("%v != %v", a, r))
 	}
 }
