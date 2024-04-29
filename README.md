@@ -7,13 +7,13 @@ package main
 
 import assert "github.com/ymz-ncnk/assert/panic"
 
-// First of all you should turn on assertions.
+// Turns on assertions.
 func init() {
   assert.On = true
 }
 
 func main(){
-  assert.Equal(1,1)
+  assert.Equal(1, 1)
 }
 ```
 
@@ -24,6 +24,6 @@ package main
 import assert "github.com/ymz-ncnk/assert/testing_error"
 
 func TestSome(t *testing.T) {
-  assert.Equal(1,1, t)
+  assert.Equal(1, 1, t)
 }
 ```
