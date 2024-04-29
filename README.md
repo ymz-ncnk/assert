@@ -5,9 +5,7 @@ Provides invariant checking in Golang code.
 ```go
 package main
 
-import (
-  assert "github.com/ymz-ncnk/assert/panic"
-)
+import assert "github.com/ymz-ncnk/assert/panic"
 
 // First of all you should turn on assertions.
 func init() {
@@ -23,9 +21,7 @@ There are also two packages `testing_error` and `testing_fatal` that can be used
 ```go
 package main
 
-import (
-  assert "github.com/ymz-ncnk/assert/testing_error"
-)
+import assert "github.com/ymz-ncnk/assert/testing_error"
 
 func TestSome(t *testing.T) {
   assert.Equal(1,1, t)
