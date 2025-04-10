@@ -17,13 +17,13 @@ func main(){
 }
 ```
 
-There are also two packages `testing_error` and `testing_fatal` that can be used in tests:
+There are also two packages `error` and `fatal` that can be used in tests:
 ```go
 package main
 
-import assert "github.com/ymz-ncnk/assert/testing_error"
+import asserterror "github.com/ymz-ncnk/assert/error"
 
 func TestSome(t *testing.T) {
-  assert.Equal(1, 1, t)
+  asserterror.Equal(1, 1, t)
 }
 ```
