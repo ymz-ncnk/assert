@@ -2,6 +2,7 @@ package assertfatal
 
 import (
 	"testing"
+	"time"
 
 	"github.com/ymz-ncnk/assert"
 	"golang.org/x/exp/constraints"
@@ -45,4 +46,10 @@ func Bigger[T constraints.Ordered](a, b T, t *testing.T) {
 func Lesser[T constraints.Ordered](a, b T, t *testing.T) {
 	t.Helper()
 	assert.Lesser(a, b, newCallback(t), t)
+}
+
+// SameTime invariant will panic if two times are not equal.
+func SameTime(a, b time.Time, delta time.Duration, t *testing.T) {
+	t.Helper()
+	assert.SameTime(a, b, delta, newCallback(t), nil)
 }

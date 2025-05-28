@@ -5,7 +5,12 @@ import (
 	"fmt"
 	"net/url"
 	"testing"
+	"time"
 )
+
+func init() {
+	On = true
+}
 
 func TestEqualOk(t *testing.T) {
 	Equal(1, 1)
@@ -82,4 +87,24 @@ func TestLesserFail(t *testing.T) {
 		}
 	}()
 	Lesser(2, 1)
+}
+
+func TestSameTimeOk(t *testing.T) {
+	a := time.Now()
+	time.Sleep(100 * time.Millisecond)
+	b := time.Now()
+	SameTime(a, b, 200*time.Millisecond)
+}
+
+func TestSameTimeFail(t *testing.T) {
+	a := time.Now()
+	time.Sleep(200 * time.Millisecond)
+	b := time.Now()
+	defer func() {
+		if str := recover(); str != fmt.Sprintf("%v != %v", a, b) {
+			fmt.Println(str)
+			t.Errorf("unexpected panic")
+		}
+	}()
+	SameTime(a, b, 1*time.Millisecond)
 }
