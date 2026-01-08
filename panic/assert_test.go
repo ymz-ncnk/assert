@@ -108,3 +108,21 @@ func TestSameTimeFail(t *testing.T) {
 	}()
 	SameTime(a, b, 1*time.Millisecond)
 }
+
+func TestEqualWithMsg(t *testing.T) {
+	defer func() {
+		if str := recover(); str != "1 != 2"+": custom msg" {
+			t.Errorf("unexpected panic: %v", str)
+		}
+	}()
+	Equal(1, 2, "custom msg")
+}
+
+func TestEqualWithMsgAndArgs(t *testing.T) {
+	defer func() {
+		if str := recover(); str != "1 != 2"+": custom msg with args" {
+			t.Errorf("unexpected panic: %v", str)
+		}
+	}()
+	Equal(1, 2, "custom msg with %s", "args")
+}

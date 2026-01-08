@@ -1,7 +1,6 @@
 package assertfatal
 
 import (
-	"fmt"
 	"testing"
 	"time"
 
@@ -9,19 +8,10 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-const msgSep = ": "
-
 func newCallback(t *testing.T, msgAndArgs ...any) assert.Callback {
 	return func(msg string) {
 		t.Helper()
-		if len(msgAndArgs) > 0 {
-			if len(msgAndArgs) == 1 {
-				msg += msgSep + fmt.Sprint(msgAndArgs[0])
-			} else {
-				msg += msgSep + fmt.Sprintf(msgAndArgs[0].(string), msgAndArgs[1:]...)
-			}
-		}
-		t.Fatal(msg)
+		t.Fatal(assert.Format(msg, msgAndArgs...))
 	}
 }
 
@@ -63,7 +53,7 @@ func Lesser[T constraints.Ordered](t *testing.T, a, b T, msgAndArgs ...any) {
 
 // SameTime invariant will panic if two times are not equal.
 func SameTime(t *testing.T, a, b time.Time, delta time.Duration,
-	msgAndArgs ...interface{}) {
+	msgAndArgs ...any) {
 	t.Helper()
 	assert.SameTime(a, b, delta, newCallback(t, msgAndArgs...), nil)
 }
