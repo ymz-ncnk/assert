@@ -24,6 +24,8 @@ package main
 import asserterror "github.com/ymz-ncnk/assert/error"
 
 func TestSome(t *testing.T) {
-  asserterror.Equal(1, 1, t)
+  asserterror.Equal(t, 1, 1)
+  asserterror.Equal(t, 1, 2, "optional message")
+  asserterror.Equal(t, 1, 2, "optional message with %s", "args")
 }
 ```
